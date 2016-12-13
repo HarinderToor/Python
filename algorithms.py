@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from Bookcase import Bookcase
+from bookcase import bookcase
 
 def findSpace(aBookcase):
     """
@@ -28,8 +28,8 @@ def addItem(aBookcase, name, mediaType):
     if aBookcase.getEmptySpaces() == 0:
         return False
     elif findSpace(aBookcase) == True:
-        aBookcase.setName(findspace)
-        aBookcase.setMediaType(findSpace)
+        aBookcase.setName(name)
+        aBookcase.setMediaType(mediaType)
     return True
 
 
