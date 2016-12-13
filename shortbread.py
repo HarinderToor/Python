@@ -32,8 +32,6 @@ def build_graph(words):
         # Group words that differ by one letter
         # Only consider same length words
         for i in range(len(word)):
-            # if len(word) != len(word[i]):
-            #     return
             different = word[:i] + word[i+1:]
             if different in similar_words:
                 similar_words[different].append(word)
