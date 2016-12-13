@@ -1,27 +1,5 @@
 #!/usr/local/bin/python
 
-
-# def answer(words, start, end):
-#     # Narrow down the search criteria
-#     # Find words with have same length as the start and end words
-#     valid_words = [start for start in words if len(start) == len(end)]
-#
-#     Group words that differ by one letter
-#     for i in range(len(word)):
-#       different = word[:i] + word[i + 1:]
-
-#     # Find words that have at least length of word-1 chars in start and end words
-#     for word in valid_words:
-#         similar_words = []
-#         matched = 0
-#         for i in range(len(word)):
-#             if word[i] in start and word[i] in end:
-#                 matched += 1
-#
-#         if matched > 2:
-#             similar_words.append(word)
-#             print similar_words
-
 from collections import defaultdict
 from collections import deque
 from itertools import product
@@ -112,14 +90,6 @@ def answer(words, start, end):
         if node == end:
             return path
             
-        # if node not in visited_node:
-        #     if node == end:
-        #         return path
-        #     visited_node.add(node)
-
-        # for neighbours in graph[node]:
-        #     queue.append(neighbours, [neighbours])
-
 if __name__ == '__main__':
     with open('words.txt') as f:
         words = f.read().splitlines()
