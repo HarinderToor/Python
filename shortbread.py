@@ -52,6 +52,7 @@ def build_graph(words):
 
     for word in words:
         # Group words that differ by one letter
+        # Only consider same length words
         for i in range(len(word)):
             # if len(word) != len(word[i]):
             #     return
@@ -74,37 +75,43 @@ def build_graph(words):
 
 def search_graph(graph, start):
     # Breadth First Search
+    # https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode
     # Un mark all nodes
-    # Create a queue
-    # Choose start node and mark as visited
+    # Create a queue and choose a start node and mark as visited
     # While there is a queue, visit adjacent node, mark as visited, insert into queue
     # Remove first node if no adjacent is found
-    # First, build the graph from the list of words
 
-    visited_node = set()
     queue = deque([[start]])
+    visited_node = set()
 
     while queue:
-        path = queue.popleft()
+        # Explore a path
+        path = queue.pop()
+        # Get last node from this path
         node = path[-1]
 
         yield node, path
 
-        for neighbours in graph[node] - visited_node:
-            visited_node.add(neighbours)
-            queue.append(path + [neighbours])
+        # Find nearest nodes in graph that have not been visited
+        for nearest in graph[node] - visited_node:
+            # Mark as visited and insert to queue
+            visited_node.add(nearest)
+            queue.append(path + [nearest])
 
 
 def answer(words, start, end):
     """
-    Compute the answer to the word puzzle by building and searching through a graph compiled from a list of words and
+    Compute the answer to the puzzle by building and searching through a graph compiled from a list of words and
     their similarities.
     """
-
-    graph = build_graph(words)
+    valid_words = [x for x in words if len(start) == len(end)]
+    # Build a graph from words of same length as start and end
+    graph = build_graph(valid_words)
+    
     for node, path in search_graph(graph, start):
         if node == end:
             return path
+            
         # if node not in visited_node:
         #     if node == end:
         #         return path
