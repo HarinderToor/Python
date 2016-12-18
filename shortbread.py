@@ -62,7 +62,7 @@ def search_graph(graph, start):
 
     while queue:
         # Explore a path
-        path = queue.pop()
+        path = queue.popleft()
         # Get last node from this path
         node = path[-1]
 
